@@ -1,12 +1,13 @@
 <%@ page contentType="text/html;charset=UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <%@ include file="../../components/header.jsp" %>
 <%@ include file="../../components/navbar.jsp" %>
 
 <div class="container mt-4">
 
-    <h2 class="mb-4">Danh sách sản phẩm</h2>
+    <h2 class="mb-4">Product List</h2>
 
     <div class="row">
 
@@ -23,13 +24,16 @@
 
                         <h5 class="card-title">${p.name}</h5>
 
+                        <%-- Đặt Locale là tiếng Việt để hiển thị dấu chấm ngăn cách hàng nghìn --%>
+                        <fmt:setLocale value="vi_VN"/>
+
                         <p class="text-danger fw-bold">
-                                ${p.price} VNĐ
+                            <fmt:formatNumber value="${p.price}" pattern="#,###" /> VNĐ
                         </p>
 
                         <a href="${pageContext.request.contextPath}/product?id=${p.id}"
                            class="btn btn-danger mt-auto">
-                            Xem chi tiết
+                            More Details
                         </a>
 
                     </div>

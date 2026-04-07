@@ -2,6 +2,7 @@
 
 <%@ page contentType="text/html;charset=UTF-8" %>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <%@ include file="../../components/header.jsp" %>
 <%@ include file="../../components/navbar.jsp" %>
@@ -17,7 +18,10 @@
 
         <div class="col-md-6">
             <h2>${product.name}</h2>
-            <h4 class="text-danger">${product.price} VNĐ</h4>
+            <h4 class="text-danger">
+                    <fmt:setLocale value="vi_VN"/>
+                    <fmt:formatNumber value="${product.price}" pattern="#,###" /> VNĐ
+            </h4>
 
             <form action="${pageContext.request.contextPath}/cart" method="post">
                 <input type="hidden" name="productId" value="${product.id}">
