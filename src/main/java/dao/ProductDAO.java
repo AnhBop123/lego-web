@@ -15,8 +15,8 @@ public class ProductDAO {
 
         List<Product> list = new ArrayList<>();
 
-        String sql = "SELECT id, name, price, image " +
-                "FROM products WHERE is_active = true";;;
+        String sql = "SELECT id, name, price, image, quantity " +
+                "FROM products WHERE is_active = true";
 
         try (Connection conn = DBConnection.getConnection();
              PreparedStatement ps = conn.prepareStatement(sql);
@@ -28,7 +28,8 @@ public class ProductDAO {
                         rs.getInt("id"),
                         rs.getString("name"),
                         rs.getDouble("price"),
-                        rs.getString("image")
+                        rs.getString("image"),
+                        rs.getInt("quantity")
                 );
 
                 list.add(p);
@@ -56,7 +57,8 @@ public class ProductDAO {
                         rs.getInt("id"),
                         rs.getString("name"),
                         rs.getDouble("price"),
-                        rs.getString("image")
+                        rs.getString("image"),
+                        rs.getInt("quantity")
                 );
             }
 
@@ -71,7 +73,7 @@ public class ProductDAO {
 
         List<Product> list = new ArrayList<>();
 
-        String sql = "SELECT * FROM products";
+        String sql = "SELECT id, name, price, image, quantity FROM products";
 
         try{
 
@@ -158,6 +160,39 @@ public class ProductDAO {
             e.printStackTrace();
         }
 
+    }
+
+    public List<Product> searchProducts(String keyword){
+
+        List<Product> list = new ArrayList<>();
+
+        String sql = "SELECT * FROM products WHERE name LIKE ? AND is_active = true";
+
+        try{
+            Connection conn = DBConnection.getConnection();
+            PreparedStatement ps = conn.prepareStatement(sql);
+
+            ps.setString(1, "%" + keyword + "%");
+
+            ResultSet rs = ps.executeQuery();
+
+            while(rs.next()){
+                Product p = new Product();
+
+                p.setId(rs.getInt("id"));
+                p.setName(rs.getString("name"));
+                p.setPrice(rs.getDouble("price"));
+                p.setImage(rs.getString("image"));
+                p.setQuantity(rs.getInt("quantity"));
+
+                list.add(p);
+            }
+
+        }catch(Exception e){
+            e.printStackTrace();
+        }
+
+        return list;
     }
 
 }

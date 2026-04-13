@@ -2,6 +2,7 @@ package controller;
 
 import dao.OrderDAO;
 import model.CartItem;
+import model.User;
 
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
@@ -27,8 +28,12 @@ public class CheckoutServlet extends HttpServlet {
             return;
         }
 
+        User user = (User) session.getAttribute("user");
+
+        int userId = user.getId();
+
         OrderDAO orderDAO = new OrderDAO();
-        int orderId = orderDAO.createOrder(name, phone, address, cart);
+        int orderId = orderDAO.createOrder(userId, name, phone, address, cart);
 
         session.removeAttribute("cart");
 

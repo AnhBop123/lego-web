@@ -79,7 +79,7 @@
 <body>
 
 <div class="header">
-    <h3>🧱 LEGO SHOP</h3>
+    <h3>🧱 KIELIN BRICK STORE </h3>
     <div>
         <a href="${pageContext.request.contextPath}/login" class="btn btn-light btn-sm fw-bold text-danger">Login</a>
         <a href="${pageContext.request.contextPath}/register" class="btn btn-outline-light btn-sm fw-bold ms-2">Register</a>
@@ -91,7 +91,7 @@
     <div class="row">
         <div class="col-12">
             <div class="hero-section">
-                <h1 class="display-5 fw-bold" style="color: #ee4d2d;">Welcome to LEGO World! 🚀</h1>
+                <h1 class="display-5 fw-bold" style="color: #ee4d2d;">Welcome to my lego corner! 🚀</h1>
                 <p class="lead mt-3 text-muted">
                     Where tiny bricks build great dreams.
                     Join us in exploring a universe of limitless creativity for all ages!
@@ -116,7 +116,7 @@
                     <strong>LEGO SHOP</strong> We are proud to be the leading trusted destination for future builders. We are committed to providing the ultimate experience with:
                 </p>
                 <ul class="text-muted mb-0" style="line-height: 1.8;">
-                    <li><strong>Quality 100%:</strong> Guaranteed authentic products and safety.</li>
+                    <li><strong>Quality:</strong> Guaranteed authentic products and safety.</li>
                     <li><strong>Diversity:</strong> Constantly updating the newest collections and limited editions(if we can)</li>
                     <li><strong>Dedicated service:</strong> An enthusiastic support team to accompany you on every building project.</li>
                 </ul>

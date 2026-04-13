@@ -43,6 +43,10 @@ public class CartServlet extends HttpServlet {
                 found = true;
                 break;
             }
+            if(product.getQuantity() <= 0){
+                response.getWriter().println(" Sản Phẩm Hiện Đang Hết hàng!");
+                return;
+            }
         }
 
         if(!found){
@@ -52,5 +56,6 @@ public class CartServlet extends HttpServlet {
         session.setAttribute("cart", cart);
 
         response.sendRedirect("cart");
+
     }
 }

@@ -5,6 +5,20 @@
 <%@ include file="../../components/header.jsp" %>
 <%@ include file="../../components/navbar.jsp" %>
 
+
+<form action="${pageContext.request.contextPath}/search" method="get" class="mb-4">
+
+    <div class="input-group">
+
+        <input type="text" name="keyword" class="form-control"
+               placeholder="Find Products..." value="${keyword}">
+
+        <button class="btn btn-danger">Search</button>
+
+    </div>
+
+</form>
+
 <div class="container mt-4">
 
     <h2 class="mb-4">Product List</h2>
@@ -24,17 +38,29 @@
 
                         <h5 class="card-title">${p.name}</h5>
 
-                        <%-- Đặt Locale là tiếng Việt để hiển thị dấu chấm ngăn cách hàng nghìn --%>
                         <fmt:setLocale value="vi_VN"/>
 
                         <p class="text-danger fw-bold">
                             <fmt:formatNumber value="${p.price}" pattern="#,###" /> VNĐ
                         </p>
 
-                        <a href="${pageContext.request.contextPath}/product?id=${p.id}"
-                           class="btn btn-danger mt-auto">
-                            More Details
-                        </a>
+                        <!--  FIX Ở ĐÂY -->
+                        <c:choose>
+
+                            <c:when test="${p.quantity > 0}">
+                                <a href="${pageContext.request.contextPath}/product?id=${p.id}"
+                                   class="btn btn-danger mt-auto">
+                                    More Details
+                                </a>
+                            </c:when>
+
+                            <c:otherwise>
+                                <button class="btn btn-secondary mt-auto" disabled>
+                                    Out of Stock
+                                </button>
+                            </c:otherwise>
+
+                        </c:choose>
 
                     </div>
 
@@ -46,5 +72,9 @@
     </div>
 
 </div>
+
+<c:if test="${empty products}">
+    <p>Không tìm thấy sản phẩm nào 😢</p>
+</c:if>
 
 <%@ include file="../../components/footer.jsp" %>

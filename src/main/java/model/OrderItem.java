@@ -1,6 +1,7 @@
 package model;
 
 public class OrderItem {
+    private int productId;
     private String productName;
     private double price;
     private int quantity;
@@ -10,6 +11,9 @@ public class OrderItem {
     public OrderItem() {}
 
     // Getter và Setter
+    public int getProductId() { return productId; }
+    public void setProductId(int productId) { this.productId = productId; }
+
     public String getProductName() { return productName; }
     public void setProductName(String productName) { this.productName = productName; }
 

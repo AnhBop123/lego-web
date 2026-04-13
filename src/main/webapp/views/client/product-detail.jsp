@@ -23,6 +23,8 @@
                     <fmt:formatNumber value="${product.price}" pattern="#,###" /> VNĐ
             </h4>
 
+            <p>Remaining: <strong>${product.quantity}</strong> units</p>
+
             <form action="${pageContext.request.contextPath}/cart" method="post">
                 <input type="hidden" name="productId" value="${product.id}">
                 <button type="submit" class="btn btn-success mt-3">
