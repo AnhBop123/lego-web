@@ -67,4 +67,27 @@ public class UserDAO {
             e.printStackTrace();
         }
     }
+
+    public boolean isUsernameExists(String username) {
+
+        String sql = "SELECT id FROM users WHERE username = ?";
+
+        try {
+            Connection conn = DBConnection.getConnection();
+            PreparedStatement ps = conn.prepareStatement(sql);
+
+            ps.setString(1, username);
+
+            ResultSet rs = ps.executeQuery();
+
+            if(rs.next()){
+                return true; // đã tồn tại
+            }
+
+        } catch(Exception e){
+            e.printStackTrace();
+        }
+
+        return false;
+    }
 }
